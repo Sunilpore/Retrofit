@@ -1,5 +1,6 @@
 package com.example.sunil.retrofiteg10;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,5 +16,5 @@ public interface Api {
     //String BASE_URL="https://api.github.com/";
 
     @GET("marvel")
-    Call <List<Hero> > getHeros();
+    Call <ArrayList<Hero>> getHeros();
 }

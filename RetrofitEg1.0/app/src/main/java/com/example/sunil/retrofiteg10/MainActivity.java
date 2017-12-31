@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     MyAdapter adapter;
     ListView listView;
     Context mContext;
+    ArrayList<Hero> heros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,34 +42,46 @@ public class MainActivity extends AppCompatActivity {
 
             Api api=retrofit.create(Api.class);
 
-        Call <List<Hero>> call=api.getHeros();
+        Call <ArrayList<Hero>> call=api.getHeros();
 //        Toast.makeText(MainActivity.this,"=api.getHeros(): "+call,Toast.LENGTH_SHORT).show();
 
-        call.enqueue(new Callback<List<Hero>>() {
+        call.enqueue(new Callback<ArrayList<Hero>>() {
             @Override
-            public void onResponse( Call<List<Hero>> call, Response<List<Hero>> response) {
+            public void onResponse( Call<ArrayList<Hero>> call, Response<ArrayList<Hero>> response) {
 
-                List<Hero> heros = response.body();
-                Toast.makeText(MainActivity.this,"response.body(): "+heros,Toast.LENGTH_SHORT).show();
+                heros = response.body();
+                Toast.makeText(MainActivity.this,"response.body(): "+response.body(),Toast.LENGTH_SHORT).show();
 
                 if (heros != null) {
 
-                String[] heroname = new String[heros.size()];
+               /* String[] heroname = new String[heros.size()];
+                String[] realName = new String[heros.size()];
 
+
+                    arrayList=new ArrayList<>();
                 for (int i = 0; i < heros.size(); i++) {
-                    heroname[i] = heros.get(i).getName();
-                }
 
-                adapter=new MyAdapter(mContext,heroname);
+                    heroname[i] = heros.get(i).getName();
+                    realName[i] = heros.get(i).getRealname();
+                    Hero hero=new Hero();
+
+                    hero.setName(heros.get(i).getName());
+                    hero.setRealname(heros.get(i).getRealname());
+                    arrayList.add(hero);
+                }*/
+
+                    /*arrayList=new ArrayList<>();
+                    arrayList.addAll(heros);*/
+                adapter=new MyAdapter(mContext,heros);
                 listView.setAdapter(adapter);
                 //listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,heroname));
 
-                for (Hero h : heros) {
+               /* for (Hero h : heros) {
                     Log.d("myTag", h.getLogin());
-                    /*Log.d("myTag", h.getName());
+                    *//*Log.d("myTag", h.getName());
                     Log.d("myTag", h.getRealname());
-                    Log.d("myTag", h.getImageurl());*/
-                }
+                    Log.d("myTag", h.getImageurl());*//*
+                }*/
             }
                 else
                     Toast.makeText(MainActivity.this,"String array is null ",Toast.LENGTH_SHORT).show();
@@ -75,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Hero>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Hero>> call, Throwable t) {
                 Toast.makeText(MainActivity.this,"Failed,try again",Toast.LENGTH_SHORT).show();
             }
         }

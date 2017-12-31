@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RetrofitEg1.0.iml" filepath="$PROJECT_DIR$/RetrofitEg1.0.iml" />
+      <module fileurl="file://C:\Users\Sith7\Desktop\GitHub\Retrofit\RetrofitEg1.0\RetrofitEg1.0.iml" filepath="C:\Users\Sith7\Desktop\GitHub\Retrofit\RetrofitEg1.0\RetrofitEg1.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Sith7\Desktop\GitHub\Retrofit\RetrofitEg1.0\app\app.iml" filepath="C:\Users\Sith7\Desktop\GitHub\Retrofit\RetrofitEg1.0\app\app.iml" />
     </modules>
   </component>
 </project>

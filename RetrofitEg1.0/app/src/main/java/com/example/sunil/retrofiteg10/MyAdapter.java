@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Sunil on 12/30/2017.
  */
@@ -16,23 +18,26 @@ public class MyAdapter extends BaseAdapter{
 
 
     private Context mContext;
-    private final String[] heroname;
+    //private final String[] heroname;
+    private ArrayList <Hero> mArrayList;
 
-    public MyAdapter(Context mContext, String[] heroname) {
+    public MyAdapter(Context mContext, ArrayList<Hero> arrayList/*String[] heroname*/) {
 
         this.mContext=mContext;
-        this.heroname=heroname;
+        this.mArrayList=arrayList;
+        //this.heroname=heroname;
+
     }
 
 
     @Override
     public int getCount() {
-        return heroname.length;
+        return mArrayList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return heroname[i];
+        return mArrayList.get(i);
     }
 
     @Override
@@ -48,21 +53,23 @@ public class MyAdapter extends BaseAdapter{
            vh=new ViewHolder();
            view= LayoutInflater.from(mContext).inflate(R.layout.lay, vg, false);
            vh.name=view.findViewById(R.id.tv_name);
+           vh.realname=view.findViewById(R.id.tv_realname);
            view.setTag(vh);
         }
         else
         vh= (ViewHolder) view.getTag();
 
-        String current= (String) getItem(i);
+        Hero current= (Hero) getItem(i);
 
-        vh.name.setText(current);
+        vh.name.setText(current.getName());
+        vh.realname.setText(current.getRealname());
         //vh.name.setTag(current);
 
         return view;
     }
 
     private class ViewHolder{
-        TextView name;
+        TextView name,realname;
     }
 
 }

@@ -31,6 +31,8 @@ public class Hero {
         this.bio = bio;
     }
 
+    public Hero() {}
+
     public String getLogin() {return login;}
 
     public String getName() {
@@ -63,5 +65,42 @@ public class Hero {
 
     public String getBio() {
         return bio;
+    }
+
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
+    }
+
+    public void setFirstappearance(String firstappearance) {
+        this.firstappearance = firstappearance;
+    }
+
+    public void setCreatedby(String createdby) {
+        this.createdby = createdby;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }
