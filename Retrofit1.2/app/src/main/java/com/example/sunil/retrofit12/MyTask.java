@@ -27,6 +27,7 @@ public class MyTask extends AsyncTask<Void, Void, Boolean> {
     Context mContext;
     String url;
 
+
     public MyTask(Context mContext, String url) {
         this.mContext=mContext;
         this.url=url;
@@ -43,14 +44,24 @@ public class MyTask extends AsyncTask<Void, Void, Boolean> {
         FileDownloadClient filedownloadclient=retrofit.create(FileDownloadClient.class);
 
         Call<ResponseBody> call=filedownloadclient.getFileDownloadData(url);
+//        Call<ResponseBody> call=filedownloadclient.getFileDownloadDataStreaming(url);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                boolean isSuccessful=writeData(response.body());
+                try {
+                    if(response.isSuccessful()){
+                        boolean isSuccessful = writeData(response.body());
+                        Toast.makeText(mContext,"Success:"+isSuccessful,Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(mContext,"Unsuceesful",Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-                Toast.makeText(mContext,"Success:"+isSuccessful,Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -63,7 +74,7 @@ public class MyTask extends AsyncTask<Void, Void, Boolean> {
     }
 
 
-    private boolean writeData(ResponseBody body) {
+    private boolean writeData(ResponseBody body) throws IOException {
 
         try {
             File iconFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Sample Icon.jpg");
